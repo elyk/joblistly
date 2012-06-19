@@ -1,0 +1,16 @@
+<h1>JobListly</h1>
+<a href="/newpost">Post a Job</a>
+</br>
+</br>
+
+<h2>Recent Postings</h2>
+</br>
+  {% for j in jobs %}
+    {{ j.urlrender() | safe  }}
+    
+    
+    <a href="/{{ j.word | safe}}">{{ j.company }} | {{ j.url | safe }}</a> <strong>in:</strong> {{ j.sector }} <strong>on:</strong>  {{j.when.strftime("%b %d, %Y")}}
+    <br><br>
+  {% endfor %}
+
+

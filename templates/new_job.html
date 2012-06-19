@@ -1,0 +1,28 @@
+<style type="text/css">
+body {
+font-family: sans-serif; width: 800px; margin: 0 auto; padding: 10px; text-align: center;}</style> 
+
+
+
+<div class="post">
+  <div class="post-heading">
+    <div class="jobs-message">
+    </div>
+<a href="/">Job Postings</a>
+<h1>JobListly</h1>
+</br>
+</br>
+    <div class="post-date">
+      {{p.when.strftime("%b %d, %Y")}}
+    </div>
+  </div>
+
+  <div class="post-content">
+  <strong> Sector:</strong>  {{p.sector}} <br /> 
+   <strong>Company: </strong> {{p.company}} <br />
+   <strong> Title: </strong> {{p.title}}     <br />
+    <br /><strong>Description:</strong> <br />
+<br />
+    {{p._render_text | safe}}
+  </div>
+</div>
