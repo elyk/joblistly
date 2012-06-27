@@ -1,28 +1,40 @@
 <style type="text/css">
 body {
-font-family: sans-serif; width: 800px; margin: 0 auto; padding: 10px; text-align: center;}</style> 
-
-
+font-family: sans-serif; width: 800px; margin: 0 auto; padding: 10px; padding-bottom: 200px;}</style> 
+<span style="margin-left: 700px;"><a href="/">Job Postings</a></span>
+<h1>[Job'Listly']</h1>
 
 <div class="post">
   <div class="post-heading">
     <div class="jobs-message">
     </div>
-<a href="/">Job Postings</a>
-<h1>JobListly</h1>
+
+
 </br>
+<a href = "apply/{{p.key().id()}}" onclick = "showForm()">Apply</a>
+<br><br>
+
+
+
+
+</div>
+
+
 </br>
     <div class="post-date">
       {{p.when.strftime("%b %d, %Y")}}
     </div>
   </div>
-
+</br>
   <div class="post-content">
-  <strong> Sector:</strong>  {{p.sector}} <br /> 
+     <strong> Title: </strong> {{p.title}}     <br />
+  
    <strong>Company: </strong> {{p.company}} <br />
-   <strong> Title: </strong> {{p.title}}     <br />
+  <strong> Skills:</strong>{{p.sector | safe}}   <br /> 
     <br /><strong>Description:</strong> <br />
 <br />
     {{p._render_text | safe}}
   </div>
 </div>
+
+

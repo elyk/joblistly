@@ -1,0 +1,30 @@
+<style type="text/css">
+body {
+font-family: sans-serif; width: 800px; margin: 0 auto; padding: 10px; padding-bottom: 200px;}</style> 
+  <h1>[Job'Listly']</h1>
+  <br />
+<body>
+{% block content %}
+ 
+<a href = "/{{job.key().id()}}" onclick = "showForm()">{{job.title}} | {{job.company}}</a>
+   
+   
+   <form action="" method="post" 
+accept-charset="utf-8">
+    <h2>Apply</h2>
+    <p> Name: </br><input type="string" name="name"/></p>
+    <p> Email:</br> <input type="string" name="email"/></p>
+    <p> Website: </br> <input type="string" name="website"/></p>
+    <p> github: </br> <input type="string" name="github"/></p>
+    <br />
+    <p>Resume:</br> </br><label> <textarea name="resume"
+                style="height: 200px; width: 600px;"> </textarea></label></p>
+    
+    <p><input type="submit"
+    value="post"></p>
+    
+
+</form>
+{% endblock %}
+
+</body>

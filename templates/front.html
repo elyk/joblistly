@@ -1,16 +1,25 @@
-<h1>JobListly</h1>
-<a href="/newpost">Post a Job</a>
+<span style="margin-left: 725px;"><a href="/newpost">Post a Job</a></span>
+<h1>[Job'Listly']</h1>
+
 </br>
 </br>
 
 <h2>Recent Postings</h2>
+<style type="text/css">
+body {
+font-family: sans-serif; width: 800px; margin: 0 auto; padding: 10px; padding-bottom: 200px;}
+
+
+</style>
+<body>
 </br>
   {% for j in jobs %}
     {{ j.urlrender() | safe  }}
     
-    
-    <a href="/{{ j.word | safe}}">{{ j.company }} | {{ j.url | safe }}</a> <strong>in:</strong> {{ j.sector }} <strong>on:</strong>  {{j.when.strftime("%b %d, %Y")}}
+   
+    <a href="/{{ j.word | safe}}"> {{ j.url | safe }} | {{ j.company }}</a><span style="padding-left: 50px;"> </span></br>  {{j.when.strftime("%b %d, %Y")}} {{ j.sector }}  
     <br><br>
   {% endfor %}
 
 
+</body>

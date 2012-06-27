@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+    <head>
+    <title>Apply</title>
+</head>
+    <body><style type="text/css">
+body {
+font-family: sans-serif; width: 800px; margin: 0 auto; padding: 10px; padding-bottom: 200px;}</style>
+        
+      <span style="margin-left: 725px;">  <a href="/">Back to Job Board</a> </span>
+        <h1>JobListly</h1>
+    <h2>Apply</h2>
+    </br>
+     <a href = "#" onclick = "showForm()">Click Here to Show The Form</a>
+<br><br>
+
+
+
+<form id="theform" action="" method="post" style="display:none"
+accept-charset="utf-8">
+    <h2>Apply</h2>
+    <p> Name: </br><input type="string" name="name"/></p>
+    <p> Email:</br> <input type="string" name="email"/></p>
+    <p> Website: </br> <input type="string" name="website"/></p>
+    <p> github: </br> <input type="string" name="github"/></p>
+    <br />
+    <p>Resume:</br> </br><label> <textarea name="resume"
+                style="height: 200px; width: 600px;"> </textarea></label></p>
+    
+    <p><input type="submit"
+    value="Apply"></p>
+    
+
+</form>
+</div>
+
+<script type = "text/javascript">
+function showForm() {
+document.getElementById("theform").style.display = "block";
+}
+</script>
+
+</body>
+
+</html>

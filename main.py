@@ -37,7 +37,10 @@ class Jobs(db.Model):
     when = db.DateTimeProperty(auto_now_add=True)
     company = db.StringProperty(required=True)
     title = db.StringProperty(required=True)
-    sector = db.StringProperty(required=True)
+    sector = db.StringListProperty()
+  
+    
+
     
     def render(self):
         self._render_text = self.message.replace('\n', '<br>')
@@ -50,7 +53,20 @@ class Jobs(db.Model):
         message=self.message
         self.title=("<a href='/"+str(self.key().id())+"'>"+str(self.title)+"</a>")
         return render_str("main.html", j = self)
+
+    
+    
+    
+class Applications(db.Model):
+    name = db.StringProperty()
+    email = db.StringProperty()
+    website = db.StringProperty()
+    github = db.StringProperty()
+    resume = db.TextProperty()
         
+    def render(self):
+        self._render_text = self.resume.replace('\n', '<br>')
+        return render_str("apply.html", a = self)
     
     
 def job_key(name = 'default'):
@@ -72,12 +88,13 @@ class NewPost(MainHandler):
         
         
     def post(self):
+        sector = []
         message = self.request.get('message')
         title = self.request.get('title')
         company = self.request.get('company')
-        sector = self.request.get('sector')
+        sector = self.request.get_all('sector')
         
-        p = Jobs(parent = job_key(), message = message, title = title, company = company, sector=sector)
+        p = Jobs(parent = job_key(), message = message, title = title, company = company, sector = sector)
         p.put()
         self.redirect('/%s' % str(p.key().id()))
  
@@ -88,10 +105,38 @@ class JobPost(MainHandler):
         
         self.render("permalink.html", job = job)
         
+class JobApply(MainHandler):
+    def get(self, job_id):
+        key = db.Key.from_path('Jobs', int(job_id), parent=job_key())
+        job = db.get(key)
+        
+        self.render("permalink2.html", job = job)
+        
+    def post(self, job_id):
+        name = self.request.get('name')
+        email = self.request.get('email')
+        website = self.request.get('website')
+        github = self.request.get('github')
+        resume = self.request.get('resume')
+        a = Applications(name = name, email = email, website = website, github = github, resume = resume)
+        a.put()
+        self.render("thanks.html")
+        
+        
+    
+class JobGet(MainHandler):
+    def get(self):
+        self.render("permalink2.html")
+        
+        
+        
+
+        
         
 app = webapp2.WSGIApplication([
         ('/', MainPage),
         ('/newpost', NewPost),
+        ('/apply/([0-9]+)', JobApply),
         ('/([0-9]+)', JobPost),
         ],
         debug=True)
